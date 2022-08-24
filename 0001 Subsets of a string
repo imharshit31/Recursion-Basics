@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void allSubsets(string &str,int ind, vector<string> &v, string &curr){
+    
+    if(ind==str.size()){
+        v.push_back(curr);
+        return;
+    }
+    
+    allSubsets(str,ind+1,v,curr);
+    curr.push_back(str[ind]);
+    allSubsets(str,ind+1,v,curr);
+    curr.pop_back();
+    
+}
+
+int main() {
+    
+    string str = "abcd", curr="";
+    vector<string> v;
+    allSubsets(str,0,v,curr);
+    cout<<v.size()<<endl;
+    for(auto a: v) cout<<a<<" ";
+    
+}
