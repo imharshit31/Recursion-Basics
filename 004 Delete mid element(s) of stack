@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void printStack(stack<int> stk){
+    while(stk.size()){
+        cout<<stk.top()<<" ";
+        stk.pop();
+    }
+}
+
+void add(stack<int> &stk1, stack<int> &stk2){
+    while(stk2.size()){
+        stk1.push(stk2.top());
+        stk2.pop();
+    }
+}
+
+stack<int> ext;
+
+void deleteMid(stack<int> &stk, int size){
+    
+    if(stk.size()<(size+1)/2){
+        add(stk,ext);
+        return;
+    }
+    
+    if((stk.size() != (size+1)/2) and (stk.size() != ((size+1)/2 + !(size%2)))){
+        int val=stk.top();
+        ext.push(val);
+    }
+    
+    stk.pop();
+    deleteMid(stk,size);
+    
+}
+
+int main() {
+    
+    stack<int> stk;
+    stk.push(1);
+    stk.push(2);
+    stk.push(3);
+    stk.push(4);
+    stk.push(5);
+    stk.push(6);
+    
+    deleteMid(stk,stk.size());
+    
+    printStack(stk);
+    
+}
