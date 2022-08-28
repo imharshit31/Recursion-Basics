@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void perWithSpaces(string &s, int ind, string &curr, vector<string> &v){
+    
+    if(ind==s.length()){
+        v.push_back(curr);
+        return;
+    }
+    
+    curr.push_back(s[ind]);
+    perWithSpaces(s,ind+1,curr,v);
+    if(ind!=s.length()-1){
+        curr.push_back(' ');
+        perWithSpaces(s,ind+1,curr,v);
+        curr.pop_back();
+    }
+    curr.pop_back();
+    
+}
+
+int main() {
+    
+    string s="abcde",curr="";
+    vector<string> v;
+    perWithSpaces(s,0,curr,v);
+    
+    for(auto a: v) cout<<a<<endl;
+    cout<<endl;
+    
+}
