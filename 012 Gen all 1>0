@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void moreOne(string &curr, int len, vector<string> &v, int one, int zero){
+    
+    if(curr.length()==len){
+        v.push_back(curr);
+        return;
+    }
+    
+    if(one>zero){
+        curr.push_back('0');
+        moreOne(curr,len,v,one,zero+1);
+        curr.pop_back();
+    }
+    
+    curr.push_back('1');
+    moreOne(curr,len,v,one+1,zero);
+    curr.pop_back();
+    
+}
+
+int main() {
+    
+    vector<string> v;
+    int len=4;
+    string curr="";
+    moreOne(curr,len,v,0,0);
+    
+    for(auto a: v) cout<<a<<endl;
+    
+}
