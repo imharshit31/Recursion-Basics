@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long toh(int n, char s, char d, char h){
+    
+    if(n==1){
+        cout<<s<<"->"<<d<<endl;
+        return 1;
+    }
+    
+    long long val1 = toh(n-1,s,h,d);
+    cout<<s<<"->"<<d<<endl;
+    long long val2 = toh(n-1,h,d,s);
+    
+    return 1+val1+val2;
+    
+}
+
+int main() {
+    
+    int disks=4;
+    cout<<"List of steps are: "<<endl;
+    long long steps = toh(disks,'s','d','h');
+    cout<<"No of steps are: "<<steps<<endl;
+    
+    return 0;
+}
