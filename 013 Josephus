@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int josephus(vector<int> &v,int n, int k, int sword){
+    
+    if(v.size()) return v[0];
+    
+    int next = (sword+k-1)%v.size();
+    sword=(next+1)%v.size()-1;
+    v.erase(v.begin()+next-1);
+    return josephus(v,n,k,sword);
+    
+}
+
+int main() {
+    
+    int n=5,k=2;
+    vector<int> v;
+    for(int i=1;i<=n;i++) v.push_back(i);
+    
+    cout<<josephus(v,n,k,0);
+    
+}
