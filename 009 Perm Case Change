@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void perCaseChange(int ind, string &s, string &curr, vector<string> &v){
+    
+    if(ind==s.length()){
+        v.push_back(curr);
+        return;
+    }
+    
+    curr.push_back(tolower(s[ind]));
+    perCaseChange(ind+1,s,curr,v);
+    curr.pop_back();
+    curr.push_back(toupper(s[ind]));
+    perCaseChange(ind+1,s,curr,v);
+    curr.pop_back();
+    
+}
+
+int main() {
+    
+    string s="abc",curr="";
+    vector<string> v;
+    perCaseChange(0,s,curr,v);
+    for(auto a: v) cout<<a<<endl;
+}
