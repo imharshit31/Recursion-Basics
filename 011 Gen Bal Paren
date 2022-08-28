@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void genBalPar(vector<string> &v, int open, int close, string &curr){
+    
+    if(open==0 and close==0){
+        v.push_back(curr);
+        return;
+    }
+    
+    if(close<=0 or close<open) 
+        return;
+    else if(close>open){
+        curr.push_back(')');
+        genBalPar(v,open,close-1,curr);
+        curr.pop_back();
+        if(open>0){
+            curr.push_back('(');
+            genBalPar(v,open-1,close,curr);
+            curr.pop_back();
+        }
+    }
+    else{
+        curr.push_back('(');
+        genBalPar(v,open-1,close,curr);
+        curr.pop_back();
+    }
+    
+}
+
+int main() {
+    
+    vector<string> v;
+    int brackets=3;
+    string curr="";
+    genBalPar(v,brackets,brackets,curr);
+    
+    for(auto a: v) cout<<a<<endl;
+    
+}
